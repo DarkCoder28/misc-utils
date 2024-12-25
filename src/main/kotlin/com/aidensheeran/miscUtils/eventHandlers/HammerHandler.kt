@@ -21,7 +21,7 @@ class HammerHandler() : Listener {
             val block = e.block;
             val location = e.player.location;
             var yaw: Int = location.yaw.toInt();
-            var pitch: Int = location.pitch.toInt();
+            val pitch: Int = location.pitch.toInt();
             if (yaw < 0)
                 yaw += 360;
             yaw = (yaw + 45) / 90;
@@ -54,8 +54,8 @@ class HammerHandler() : Listener {
                 damageCount += breakBlock(block.getRelative(BlockFace.DOWN).getRelative(BlockFace.EAST), heldItem);
                 damageCount += breakBlock(block.getRelative(BlockFace.DOWN).getRelative(BlockFace.WEST), heldItem);
             }
-            var item = e.player.inventory.itemInMainHand;
-            var itemData = item.itemMeta as Damageable;
+            val item = e.player.inventory.itemInMainHand;
+            val itemData = item.itemMeta as Damageable;
             itemData.damage += damageCount / 3;
             item.setItemMeta(itemData);
             e.player.inventory.setItemInMainHand(item);
