@@ -1,0 +1,9 @@
+name: misc-utils
+version: '1.0-SNAPSHOT'
+main: com.aidensheeran.miscUtils.MiscUtils
+api-version: '1.21'
+author: Aiden Sheeran
+website: https://aidensheeran.com
+prefix: Misc Utils
+depend:
+  - MCKotlin-Paper
