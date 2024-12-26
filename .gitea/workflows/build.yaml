@@ -11,6 +11,9 @@ jobs:
     name: Build Artefact
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
+      - name: Check out repository code
+        uses: actions/checkout@master
 
       # Set up Java Temurin 21 (Java 21)
       - name: Set up Java Temurin 21
@@ -20,23 +23,20 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           architecture: 'x64'
-
-      # Checkout the repository
-      - name: Check out repository code
-        uses: actions/checkout@master
+          cache: 'maven'
 
       # Cache Maven dependencies to speed up builds
-      - name: Cache local Maven repository
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+#      - name: Cache local Maven repository
+#        uses: actions/cache@v4
+#        with:
+#          path: ~/.m2/repository
+#          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: |
+#            ${{ runner.os }}-maven-
 
       # Run Maven build command
       - name: Build with Maven
-        run: mvn clean compile package verify
+        run: mvn --file pom.xml clean compile package verify
 
       # Upload the artifact
       - name: Upload artifact
