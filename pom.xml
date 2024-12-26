@@ -51,6 +51,26 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>sh</executable> <!-- Or "cmd" on Windows -->
+                            <arguments>
+                                <argument>-c</argument>
+                                <argument>rm /mnt/mcservers/minecraft-ethan/plugins/misc-utils*.jar &amp;&amp; cp target/misc-utils*.jar /mnt/mcservers/minecraft-ethan/plugins</argument> <!-- Customize the copy command -->
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>

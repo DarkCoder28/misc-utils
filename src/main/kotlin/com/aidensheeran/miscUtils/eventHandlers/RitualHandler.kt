@@ -41,9 +41,9 @@ class RitualHandler: Listener {
             val clickItem = e.item!!;
             val clickItemData = clickItem.persistentDataContainer;
             if (clickItemData.has(MiscUtils.customItemContainer.keys[CustomItems.RITUAL_STARTER]!!)) {
+                e.isCancelled = true;
                 for (ritual in Rituals.entries) {
                     if (ritual.getRitual().checkValid(e.player, e.clickedBlock!!)) {
-                        e.isCancelled = true;
                         ritual.getRitual().executeRitual(e.player, e.clickedBlock!!);
                         return;
                     }
